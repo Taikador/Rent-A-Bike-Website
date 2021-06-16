@@ -125,7 +125,7 @@
                         <p>Error</p>
                     </div>
                     <input type="submit" id="submit" name="submit" class="modal-input-btn" value="Registrieren">
-                    <span class="modal-input-login">Sie besitzen bereits einen Account? <a href="" id="openViaRegister">hier</a> anmelden </span>
+                    <span class="modal-input-login">Sie besitzen bereits einen Account? <a id="openViaRegister">hier</a> anmelden </span>
                 </form>
             </div>
         </div>
@@ -213,10 +213,10 @@
             </div>
             <div class="footer-heading footer-3">
                 <h2>Social Media</h2>
-                <a href="#">Instagram</a>
-                <a href="#">GitHub</a>
-                <a href="#">YouTube</a>
-                <a href="#">Twitter</a>
+                <a href="https://www.instagram.com/noah.parzentny/">Instagram</a>
+                <a href="https://github.com/Taikador/Rent-A-Bike-Website">GitHub</a>
+                <a href="https://www.youtube.com/watch?v=df2sD3OpjBQ">YouTube</a>
+                <a href="https://twitter.com/DevTaikador">Twitter</a>
             </div>
         </div>
     </div>

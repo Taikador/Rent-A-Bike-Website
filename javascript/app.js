@@ -37,12 +37,18 @@ window.addEventListener('click', (e) => {
 });
 
 //Modall Items login
-const modalLogin    = document.getElementById('email-modal-login');
-const openBtn2      = document.querySelector('#login_btn');
-const closeBtn2     = document.querySelector('.close-btn2');
+const modalLogin        = document.getElementById('email-modal-login');
+const openBtn2          = document.querySelector('#login_btn');
+const openViaRegister   = document.querySelector('#openViaRegister');
+const closeBtn2         = document.querySelector('.close-btn2');
 
 //Click events Modall
 openBtn2.addEventListener('click', () => {
+    modalLogin.style.display = 'block';
+});
+
+openViaRegister.addEventListener('click', () => {
+    modalRegister.style.display = 'none';
     modalLogin.style.display = 'block';
 });
 

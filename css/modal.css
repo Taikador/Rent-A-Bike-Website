@@ -152,6 +152,7 @@
     text-decoration: none;
     color: var(--blurple);
     font-size: 600;
+    cursor: pointer;
 }
 
 @media screen and (max-width: 768px) {
@@ -330,6 +331,7 @@
     text-decoration: none;
     color: var(--blurple);
     font-size: 600;
+    cursor: pointer;
 }
 
 @media screen and (max-width: 768px) {
