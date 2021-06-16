@@ -1,0 +1,36 @@
+.footer-container {
+    background-color: var(--darkgray);
+    padding: 4rem 0 4rem 0;
+}
+
+.footer {
+    width: 80%;
+    height: 40vh;
+    background-color: var(--darkgray);
+    color: var(--white);
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin: 0 auto;
+}
+
+.footer-heading {
+    display: flex;
+    flex-direction: column;
+    margin-right: 4rem;
+}
+
+.footer-heading h2 {
+    margin-bottom: 2rem;
+}
+
+.footer-heading a {
+    color: var(--white);
+    text-decoration: none;
+    margin-bottom: 0.5rem;
+}
+
+.footer-heading a:hover {
+    color: var(--blurple);
+    transition: 0.3s ease-out;
+}

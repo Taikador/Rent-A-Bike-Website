@@ -1,0 +1,129 @@
+.main {
+    background-color: var(--darkgray);
+}
+
+.main__container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    justify-self: center;
+    width: 80%;
+    margin: 0 auto;
+    height: 90vh;
+    background-color: var(--darkgray);
+}
+
+.main__content {
+    justify-self: start;
+    margin-left: 20px;
+    color: var(--white);
+    width: 80%;
+}
+
+.main__content h1 {
+    font-size: 2rem;
+}
+
+.main__content p {
+    margin-top:  1rem;
+    font-size: 1.2rem;
+}
+
+.main__btn {
+    font-size: 1rem;
+    background-color: var(--blurple);
+    padding: 8px 20px;
+    border: none;
+    border-radius: 4px;
+    color: var(--white);
+    margin-top: 2rem;
+    cursor: pointer;
+    position: relative;
+    transition: all .35s;
+    outline: none;
+}
+
+.main__btn a {
+    position: relative;
+    z-index: 2;
+    color: var(--white);
+    text-decoration: none;
+}
+
+.main__btn:after {
+    position: absolute;
+    content: "";
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 100%;
+    transition: all .35s;
+    border-radius: 4px;
+    background: var(--lightblue);
+}
+
+.main__btn:hover {
+    color: var(--white);
+}
+
+.main__btn:hover:after {
+    width: 100%;
+}
+
+.main_img_container {
+    text-align: center;
+}
+
+#main_img {
+    height: 80%;
+    width: 80%;
+}
+
+@media screen and (max-width: 768px) {
+    .main__container {
+        display: grid;
+        grid-template-columns: auto;
+        align-items: center;
+        justify-self: center;
+        width: 90%;
+        margin: 0 auto;
+        height: 90vh;
+        background-color: var(--darkgray);
+    }
+
+    .main__content {
+        justify-self: center;
+        color: var(--white);
+        width: 80%;
+        margin: 0;
+    }
+
+    .main__content p {
+        margin-top: 1rem;
+        font-size: 1.5rem;
+    }
+
+    #main_img {
+        display: none;
+    }
+}
+
+@media screen and (max-wdith: 480px) {
+    .main__content {
+        text-align: center;
+    }
+
+    .main__content h1 {
+        font-size: 2.8rem;
+    }
+
+    .main__content p {
+        margin-top: 2rem;
+        font-size: 1.5rem;
+    }
+
+    .main__btn {
+        padding: 12px 36px;
+        margin-top: 2.5rem;
+    }
+}
