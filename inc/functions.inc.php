@@ -195,7 +195,7 @@ function loginUser($conn, $email, $pwd)
     $usernameExists = UsernameExists($conn, $email, $email);
 
     if ($usernameExists === false) {
-        header("location: ../login.php?error=wronglogin1");
+        header("location: ../index.php?error=wronglogin1");
         exit();
     }
 
@@ -203,7 +203,7 @@ function loginUser($conn, $email, $pwd)
     $checkPwd   = password_verify($pwd, $pwdHashed);
 
     if ($checkPwd === false) {
-        header("location: ../login.php?error=wronglogin2");
+        header("location: ../index.php?error=wronglogin2");
         exit();
     } else if ($checkPwd === true) {
         session_start();
