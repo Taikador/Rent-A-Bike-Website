@@ -1,0 +1,298 @@
+:root {
+    --darkgray: #212329;
+    --blurple: #3059ff;
+    --white: #fff;
+    --darkwhite: #f5f5f5;
+    --lightblue: #337af1;
+    --lightgray: #b1b1b1;
+
+    --errorColor: #f00e0e;
+    --validColor: #0add0a;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    overflow-x: hidden;
+}
+
+/* Navigation */
+
+.container {
+    position: relative;
+    width: 100%;
+}
+
+.navigation {
+    position: fixed;
+    width: 300px;
+    height: 100%;
+    background: var(--darkgray);
+    transition: 0.5s;
+    overflow: hidden;
+}
+
+.navigation.active {
+    width: 60px;
+}
+
+.navigation ul {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+}
+
+.navigation ul li {
+    position: relative;
+    width: 100%;
+    list-style: none;
+}
+
+.navigation ul li:hover {
+    background: var(--blurple);
+}
+
+.navigation ul li:nth-child(1) {
+    margin-bottom: 20px;
+}
+
+.navigation ul li:nth-child(1):hover {
+    background: transparent;
+
+}
+
+.navigation ul li a {
+    position: relative;
+    display: block;
+    width: 100%;
+    display: flex;
+    text-decoration: none;
+    color: var(--white);
+}
+
+.navigation ul li a .icon {
+    position: relative;
+    display: block;
+    min-width: 60px;
+    height: 60px;
+    line-height: 60px;
+    text-align: center;
+    top: 18px;
+}
+
+.navigation ul li a .icon .fa {
+    color: var(--white);
+    font-size: 24px;
+}
+
+.navigation ul li a .title {
+    position: relative;
+    display: block;
+    padding: 0 10px;
+    height: 60px;
+    line-height: 60px;
+    white-space: nowrap;
+}
+
+/* Dashboard */
+
+.main {
+    position: absolute;
+    width: calc(100% - 300px);
+    left: 300px;
+    min-height: 100vh;
+    background: var(--darkwhite);
+    transition: 0.5s;
+}
+
+.main.active {
+    width: calc(100% - 60px);
+    left: 60px;
+}
+
+.main .topbar {
+    width: 100%;
+    background: var(--darkgray);
+    height: 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.toggle {
+    position: relative;
+    width: 60px;
+    height: 60px;
+    cursor: pointer;
+}
+
+.toggle::before {
+    content: '\f0c9';
+    font-family: fontAwesome;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    line-height: 60px;
+    font-size: 24px;
+    text-align: center;
+    color: var(--white);
+}
+
+/* Info Karten */
+
+.cardBox {
+    position: relative;
+    width: 100%;
+    padding: 20px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 20px;
+}
+
+.cardBox .card {
+    position: relative;
+    background: var(--white);
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    cursor: pointer;
+}
+
+.cardBox .card .numbers {
+    position: relative;
+    font-size: 2rem;
+    font-weight: 500;
+}
+
+.cardBox .card .cardName {
+    color: var(--lightgray);
+}
+
+.cardBox .card .iconBox {
+    font-size: 2.5em;
+    color: var(--blurple);
+}
+
+.cardBox .card .iconBox .fas {
+    margin-top: 10px;
+}
+
+/* Tabellen */
+
+.details {
+    position: relative;
+    width: 100%;
+    padding: 20px;
+    display: grid;
+    grid-gap: 20px;
+    grid-template-columns: 2fr 1fr;
+}
+
+/* Recent Orders */
+
+.details .recentOrders {
+    position: relative;
+    display: grid;
+    min-height: 530px;
+    background: var(--white);
+    padding: 20px;
+}
+
+.cardHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.cardHeader h2 {
+    font-weight: 600;
+}
+
+.btn {
+    position: relative;
+    padding: 5px 10px;
+    background: var(--blurple);
+    color: var(--white);
+    text-decoration: none;
+    border-radius: 6px;
+}
+
+.qtable {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: -200px;
+}
+
+.qtable thead td {
+    font-weight: 600;
+}
+
+#booking-table tr {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+#booking-table tbody tr:last-child {
+    border-bottom: none;
+}
+
+#booking-table tbody tr:hover {
+    background: var(--blurple);
+    color: var(--white);
+}
+
+#booking-table tr td {
+    padding: 9px 5px;
+}
+
+#booking-table tbody tr td:last-child,
+#booking-table thead tr td:last-child {
+    text-align: right;
+}
+
+#booking-table tbody tr td:nth-child(2),
+#booking-table thead tr td:nth-child(2) {
+    text-align: right;
+    padding-right: 20px;
+}
+
+#booking-table tbody tr td:nth-child(3),
+#booking-table thead tr td:nth-child(3) {
+    text-align: center;
+}
+
+/* Recent Customers */
+
+.recentCustomers {
+    position: relative;
+    display: grid;
+    min-height: 530px;
+    background: var(--white);
+    padding: 20px;
+}
+
+#customer-table tr {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+#customer-table tbody tr:last-child {
+    border-bottom: none;
+}
+
+#customer-table tbody tr:hover {
+    background: var(--blurple);
+    color: var(--white);
+}
+
+#customer-table tr td {
+    padding: 9px 5px;
+}
+
+#customer-table tbody tr td:last-child,
+#customer-table thead tr td:last-child {
+    text-align: right;
+}
