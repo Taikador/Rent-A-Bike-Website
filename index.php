@@ -71,7 +71,7 @@
         </div>
     </div>
 
-    <!-- MODAL SECTION -->
+    <!-- MODAL Register -->
 
     <div class="modal" id="email-modal-register">
         <div class="modal-content">
@@ -157,7 +157,30 @@
         </div>
     </div>
 
-    <!-- GALLERY -->
+    <!-- Vehicles -->
+    
+    <div class="vehicle-section">
+        <div class="vehicle-heading">
+            <h1>Unser Fuhrpark</h1>
+        </div>
+
+        <div class="vehicle">
+            <div class="vehicle-cell">
+                <img src="img/gallery/Pic1.jpg" alt="Picture not found!" class="vehicle-cell_img">
+                <div class="vehicle-cell_text">E-Scooter</div>
+            </div>
+            <div class="vehicle-cell">
+                <img src="img/gallery/Pic4.jpg" alt="Picture not found!" class="vehicle-cell_img">
+                <div class="vehicle-cell_text">E-Bike</div>
+            </div>
+            <div class="vehicle-cell">
+                <img src="img/gallery/Pic2.jpg" alt="Picture not found!" class="vehicle-cell_img">
+                <div class="vehicle-cell_text">E-Mountainbike</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Tariff's -->
 
     <div class="tarife-section">
         <div class="tarife-heading">
