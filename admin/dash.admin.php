@@ -19,6 +19,7 @@ if (isset($_SESSION)) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://kit.fontawesome.com/2deba413ff.js" crossorigin="anonymous"></script>
+    <link rel="icon" type="image/svg+xml" href="../img/admin-dash.svg">
     <link rel="stylesheet" href="../css/admin.css">
     <title>Admin Dashboard</title>
 </head>
@@ -51,6 +52,12 @@ if (isset($_SESSION)) {
                     </a>
                 </li>
                 <li>
+                    <a href="veh.admin.php">
+                        <span class="icon"><i class="fa fa-bicycle" aria-hidden="true"></i></span>
+                        <span class="title">Fahrzeuge</span>
+                    </a>
+                </li>
+                <li>
                     <a href="rep.admin.php">
                         <span class="icon"><i class="fa fa-wrench" aria-hidden="true"></i></span>
                         <span class="title">Reparaturen</span>
@@ -80,7 +87,7 @@ if (isset($_SESSION)) {
                 <div class="card">
                     <div>
                         <div class="numbers"><?php include_once '../inc/db.inc.php'; $sql = "SELECT * FROM vehicle"; $statement = $conn->prepare($sql); $statement->execute(); $result=$statement->get_result(); $count=$result->num_rows; echo $count; ?></div>
-                        <div class="cardName">Anzahl der Geräte</div>
+                        <div class="cardName">Anzahl der Fahrzeuge</div>
                     </div>
                     <div class="iconBox">
                         <i class="fas fa-biking"></i>
