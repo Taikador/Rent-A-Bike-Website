@@ -29,6 +29,10 @@
     font-size: 1.2rem;
 }
 
+.main__content span {
+    color: var(--blurple);
+}
+
 .main__btn {
     font-size: 1rem;
     background-color: var(--blurple);
