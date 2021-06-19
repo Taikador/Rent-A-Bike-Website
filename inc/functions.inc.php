@@ -3,6 +3,159 @@ require_once 'db.inc.php';
 ?>
 <?php
 
+// Creates
+
+function createRepair($conn, $date, $desc, $vehicle)
+{
+
+    $sql = "INSERT INTO repairs (date, description, chassis_number) VALUES (?,?,?)";
+    $stmt= mysqli_stmt_init($conn);
+
+    if (!mysqli_stmt_prepare($stmt, $sql)) {
+        header("location: ../admin/rep.admin.php?error=INSERTFAILED");
+        exit();
+    }
+
+    mysqli_stmt_bind_param($stmt, "ssi", $date, $desc, $vehicle);
+    mysqli_stmt_execute($stmt);
+    mysqli_stmt_close($stmt);
+
+    header("location: ../admin/rep.admin.php?error=none");
+    exit();
+}
+
+function createVehicle($conn, $chassis_number, $class, $station)
+{
+
+    $sql = "INSERT INTO vehicle (chassis_number, ID_Class, ID_Station) VALUES (?,?,?)";
+    $stmt= mysqli_stmt_init($conn);
+
+    if (!mysqli_stmt_prepare($stmt, $sql)) {
+        header("location: ../admin/veh.admin.php?error=INSERTFAILED");
+        exit();
+    }
+
+    mysqli_stmt_bind_param($stmt, "iii", $chassis_number, $class, $station);
+    mysqli_stmt_execute($stmt);
+    mysqli_stmt_close($stmt);
+
+    header("location: ../admin/veh.admin.php?error=none");
+    exit();
+}
+
+function createEvent($conn, $starttime, $endtime, $id_customer, $id_tariff, $id_class, $chassis_number)
+{
+
+    $sql = "INSERT INTO rent-list (start, end, ID_Customer, ID_Tariff, ID_Class, chassis_number) VALUES (?,?,?,?,?,?)";
+    $stmt = mysqli_stmt_init($conn);
+
+    if (!mysqli_stmt_prepare($stmt, $sql)) {
+        header("location: ../admin/event.php?error=INSERTFAILED");
+        exit();
+    }
+
+    mysqli_stmt_bind_param($stmt, "ssiiii", $starttime, $endtime, $id_customer, $id_tariff, $id_class, $chassis_number);
+    mysqli_stmt_execute($stmt);
+    mysqli_stmt_close($stmt);
+
+    header("location: ../admin/event.php?error=none");
+    exit();
+}
+
+// Get Information
+
+function getRoleName($conn, $userId)
+{
+    $query = $conn->query("SELECT ID_Role FROM customer WHERE ID_Customer = '$userId'");
+
+    if ($query->num_rows <= 0) return null;
+
+    $role_id = $query->fetch_assoc()['ID_Role'];
+
+    $roleQuery = $conn->query("SELECT role FROM role WHERE ID_Role = '$role_id'");
+
+    $role_name = $roleQuery->fetch_assoc()['role'];
+    return $role_name;
+}
+
+function getTownIdFromName($conn, $townName)
+{
+    $query = $conn->query("SELECT ZIP FROM town WHERE town ='$townName'");
+    if ($query->num_rows <= 0) {
+        return null;
+    }
+    $id = $query->fetch_assoc()['ZIP'];
+    return $id;
+}
+
+function getClassFromId($conn, $classId)
+{
+
+    $query = $conn->query("SELECT name FROM class WHERE ID_Class = '$classId'");
+
+    $className = $query->fetch_assoc()['name'];
+    $classPrice = $query->fetch_assoc()['price'];
+
+    return [$className, $classPrice];
+}
+
+function getRoleFromId($id)
+{
+
+    switch ($id) {
+
+        case 1:
+            return "User";
+            break;
+        case 2:
+            return "Admin";
+            break;
+
+        default:
+            return "Watcher";
+            break;
+    }
+}
+
+function getClassIdFromName($conn, $className)
+{
+
+    $query = $conn->query("SELECT ID_Class FROM class WHERE name = '$className'");
+
+    $id = $query->fetch_assoc()['ID_Class'];
+
+    return $id;
+}
+
+// Check perms
+
+function isAdmin($conn, $userId)
+{
+    $role_name = getRoleName($conn, $userId);
+    if ($role_name == null) return null;
+    return strcasecmp($role_name, "admin") == 0;
+}
+
+function isUser($conn, $userId)
+{
+    $role_name = getRoleName($conn, $userId);
+    if ($role_name == null) return null;
+    return strcasecmp($role_name, "user") == 0;
+}
+
+function canDeleteRent($conn, $rent_id, $id_customer)
+{
+    $query = $conn->query("SELECT ID_Customer FROM rent-list WHERE ID_Rent = '$rent_id'");
+
+    if ($query->num_rows <= 0) return false;
+
+    $clubIdFromDatabase = $query->fetch_assoc()['ID_Customer'];
+
+    return $clubIdFromDatabase == $id_customer;
+}
+
+// Login / Register
+
 function emptyInputSignup($email, $password, $pwdRepeat)
 {
     if (empty($email) || empty($password) || empty($pwdRepeat)) {
@@ -90,96 +243,6 @@ function createUser($conn, $firstname, $lastname, $telephone, $email, $password,
     exit();
 }
 
-function createEvent($conn, $starttime, $endtime, $id_customer, $id_tariff, $id_class, $chassis_number)
-{
-
-    $sql = "INSERT INTO rent-list (start, end, ID_Customer, ID_Tariff, ID_Class, chassis_number) VALUES (?,?,?,?,?,?)";
-    $stmt = mysqli_stmt_init($conn);
-
-    if (!mysqli_stmt_prepare($stmt, $sql)) {
-        header("location: ../admin/event.php?error=INSERTFAILED");
-        exit();
-    }
-
-    mysqli_stmt_bind_param($stmt, "ssiiii", $starttime, $endtime, $id_customer, $id_tariff, $id_class, $chassis_number);
-    mysqli_stmt_execute($stmt);
-    mysqli_stmt_close($stmt);
-
-    header("location: ../admin/event.php?error=none");
-    exit();
-}
-
-
-function getRoleName($conn, $userId)
-{
-    $query = $conn->query("SELECT ID_Role FROM customer WHERE ID_Customer = '$userId'");
-
-    if ($query->num_rows <= 0) return null;
-
-    $role_id = $query->fetch_assoc()['ID_Role'];
-
-    $roleQuery = $conn->query("SELECT role FROM role WHERE ID_Role = '$role_id'");
-
-    $role_name = $roleQuery->fetch_assoc()['role'];
-    return $role_name;
-}
-
-function isAdmin($conn, $userId)
-{
-    $role_name = getRoleName($conn, $userId);
-    if ($role_name == null) return null;
-    return strcasecmp($role_name, "admin") == 0;
-}
-
-function isUser($conn, $userId)
-{
-    $role_name = getRoleName($conn, $userId);
-    if ($role_name == null) return null;
-    return strcasecmp($role_name, "user") == 0;
-}
-
-function getTownIdFromName($conn, $townName)
-{
-    $query = $conn->query("SELECT ZIP FROM town WHERE town ='$townName'");
-    if ($query->num_rows <= 0) {
-        return null;
-    }
-    $id = $query->fetch_assoc()['ZIP'];
-    return $id;
-}
-
-function getClubIdFromName($conn, $className)
-{
-
-    $query = $conn->query("SELECT ID_Class FROM class WHERE name = '$className'");
-
-    $id = $query->fetch_assoc()['ID_Class'];
-
-    return $id;
-}
-
-function canDeleteRent($conn, $rent_id, $id_customer)
-{
-    $query = $conn->query("SELECT ID_Customer FROM rent-list WHERE ID_Rent = '$rent_id'");
-
-    if ($query->num_rows <= 0) return false;
-
-    $clubIdFromDatabase = $query->fetch_assoc()['ID_Customer'];
-
-    return $clubIdFromDatabase == $id_customer;
-}
-
-function getClassFromId($conn, $classId)
-{
-
-    $query = $conn->query("SELECT name FROM class WHERE ID_Class = '$classId'");
-
-    $className = $query->fetch_assoc()['name'];
-    $classPrice = $query->fetch_assoc()['price'];
-
-    return [$className, $classPrice];
-}
-
 function emptyInputLogin($email, $pwd)
 {
     if (empty($email) || empty($pwd)) {
@@ -215,20 +278,132 @@ function loginUser($conn, $email, $pwd)
     }
 }
 
-function getRoleFromId($id)
+// Updates (Admin)
+
+function UpdateEmail($conn, $email, $id)
 {
+    $sql = "UPDATE customer SET email = ? WHERE ID_Customer = $id";
+    $stmt= mysqli_stmt_init($conn);
 
-    switch ($id) {
-
-        case 1:
-            return "User";
-            break;
-        case 2:
-            return "Admin";
-            break;
-
-        default:
-            return "Watcher";
-            break;
+    if (!mysqli_stmt_prepare($stmt, $sql)) {
+        header("location: ../../admin/sett.admin.php?error=INSERTFAILED");
+        exit();
     }
+
+    mysqli_stmt_bind_param($stmt, "s", $email);
+    mysqli_stmt_execute($stmt);
+    mysqli_stmt_close($stmt);
+
+    header("location: ../../admin/sett.admin.php?error=none");
+    exit();
+}
+
+function UpdateTown($conn, $town, $id)
+{
+    $sql = "UPDATE customer SET ZIP = ? WHERE ID_Customer = $id";
+    $stmt= mysqli_stmt_init($conn);
+
+    if (!mysqli_stmt_prepare($stmt, $sql)) {
+        header("location: ../../admin/sett.admin.php?error=INSERTFAILED");
+        exit();
+    }
+
+    mysqli_stmt_bind_param($stmt, "s", $town);
+    mysqli_stmt_execute($stmt);
+    mysqli_stmt_close($stmt);
+
+    header("location: ../../admin/sett.admin.php?error=none");
+    exit();
+}
+
+function UpdateStreet($conn, $street, $id)
+{
+    $sql = "UPDATE customer SET street = ? WHERE ID_Customer = $id";
+    $stmt= mysqli_stmt_init($conn);
+
+    if (!mysqli_stmt_prepare($stmt, $sql)) {
+        header("location: ../../admin/sett.admin.php?error=INSERTFAILED");
+        exit();
+    }
+
+    mysqli_stmt_bind_param($stmt, "s", $street);
+    mysqli_stmt_execute($stmt);
+    mysqli_stmt_close($stmt);
+
+    header("location: ../../admin/sett.admin.php?error=none");
+    exit();
+}
+
+function UpdatePhone($conn, $phone, $id)
+{
+    $sql = "UPDATE customer SET telephone = ? WHERE ID_Customer = $id";
+    $stmt= mysqli_stmt_init($conn);
+
+    if (!mysqli_stmt_prepare($stmt, $sql)) {
+        header("location: ../../admin/sett.admin.php?error=INSERTFAILED");
+        exit();
+    }
+
+    mysqli_stmt_bind_param($stmt, "s", $phone);
+    mysqli_stmt_execute($stmt);
+    mysqli_stmt_close($stmt);
+
+    header("location: ../../admin/sett.admin.php?error=none");
+    exit();
+}
+
+function UpdateFirstname($conn, $firstname, $id)
+{
+    $sql = "UPDATE customer SET firstname = ? WHERE ID_Customer = $id";
+    $stmt= mysqli_stmt_init($conn);
+
+    if (!mysqli_stmt_prepare($stmt, $sql)) {
+        header("location: ../../admin/sett.admin.php?error=INSERTFAILED");
+        exit();
+    }
+
+    mysqli_stmt_bind_param($stmt, "s", $firstname);
+    mysqli_stmt_execute($stmt);
+    mysqli_stmt_close($stmt);
+
+    header("location: ../../admin/sett.admin.php?error=none");
+    exit();
+}
+
+function UpdateLastname($conn, $lastname, $id)
+{
+    $sql = "UPDATE customer SET lastname = ? WHERE ID_Customer = $id";
+    $stmt= mysqli_stmt_init($conn);
+
+    if (!mysqli_stmt_prepare($stmt, $sql)) {
+        header("location: ../../admin/sett.admin.php?error=INSERTFAILED");
+        exit();
+    }
+
+    mysqli_stmt_bind_param($stmt, "s", $lastname);
+    mysqli_stmt_execute($stmt);
+    mysqli_stmt_close($stmt);
+
+    header("location: ../../admin/sett.admin.php?error=none");
+    exit();
+}
+
+function UpdatePassword($conn, $password, $id)
+{
+    $sql = "UPDATE customer SET password = ? WHERE ID_Customer = $id";
+    $stmt= mysqli_stmt_init($conn);
+
+    if (!mysqli_stmt_prepare($stmt, $sql)) {
+        header("location: ../../admin/sett.admin.php?error=INSERTFAILED");
+        exit();
+    }
+
+    $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+
+    mysqli_stmt_bind_param($stmt, "s", $hashedPassword);
+    mysqli_stmt_execute($stmt);
+    mysqli_stmt_close($stmt);
+
+    header("location: ../../admin/sett.admin.php?error=none");
+    exit();
 }
