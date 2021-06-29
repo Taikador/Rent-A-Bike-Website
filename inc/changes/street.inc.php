@@ -10,7 +10,7 @@ if (isset($_POST["submit"])) {
 
     require_once '../functions.inc.php';
 
-    UpdateStreet($conn, $street, $id);
+    UpdateStreetAdmin($conn, $street, $id);
 
 }
 else {

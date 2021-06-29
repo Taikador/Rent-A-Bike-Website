@@ -10,7 +10,7 @@ if (isset($_POST["submit"])) {
 
     require_once '../functions.inc.php';
 
-    UpdatePassword($conn, $password, $id);
+    UpdatePasswordAdmin($conn, $password, $id);
 
 }
 else {

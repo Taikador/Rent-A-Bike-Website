@@ -10,7 +10,7 @@ if (isset($_POST["submit"])) {
 
     require_once '../functions.inc.php';
 
-    UpdatePhone($conn, $phone, $id);
+    UpdatePhoneAdmin($conn, $phone, $id);
 
 }
 else {

@@ -10,7 +10,7 @@ if (isset($_POST["submit"])) {
 
     require_once '../functions.inc.php';
 
-    UpdateFirstname($conn, $firstname, $id);
+    UpdateFirstnameAdmin($conn, $firstname, $id);
 
 }
 else {

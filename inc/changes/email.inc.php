@@ -18,7 +18,7 @@ if (isset($_POST["submit"])) {
         exit();
     }
 
-    UpdateEmail($conn, $email, $id);
+    UpdateEmailAdmin($conn, $email, $id);
 
 }
 else {

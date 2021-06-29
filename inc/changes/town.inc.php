@@ -10,7 +10,7 @@ if (isset($_POST["submit"])) {
 
     require_once '../functions.inc.php';
 
-    UpdateTown($conn, $town, $id);
+    UpdateTownAdmin($conn, $town, $id);
 
 }
 else {
