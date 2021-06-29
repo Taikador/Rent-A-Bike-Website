@@ -521,5 +521,5 @@ body {
 }
 
 .swal2-content {
-  z-index: 2 !important;
+    z-index: 2 !important;
 }

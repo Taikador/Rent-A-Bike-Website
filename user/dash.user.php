@@ -17,7 +17,7 @@ if (isset($_SESSION)) {
         function toggleMenu() {
             let toggle      = document.querySelector('.toggle');
             let navigation  = document.querySelector('.navigation');
-            let main        = document.querySelector('.main');
+            let main        = document.querySelector('.primary');
             toggle.classList.toggle('active');
             navigation.classList.toggle('active');
             main.classList.toggle('active');
@@ -107,7 +107,7 @@ if (isset($_SESSION)) {
                 <div class="recentOrders">
                     <div class="cardHeader">
                         <h2>Deine Buchungen</h2>
-                        <a href="rent.admin.php" class="btn">Alle ansehen</a>
+                        <a href="rents.user.php" class="btn">Alle ansehen</a>
                     </div>
                     <?php
                         include_once '../inc/db.inc.php';
