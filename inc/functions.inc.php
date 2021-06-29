@@ -99,6 +99,29 @@ function getClassFromId($conn, $classId)
     return [$className, $classPrice];
 }
 
+function getRentsPerUser($conn, $id)
+{
+    $sql = ("SELECT 
+            `rent-list`.`start`, `rent-list`.`end`, class.name, tariff.name, `rent-list`.`price`
+            FROM 
+            `rent-list`
+            INNER JOIN 
+            customer ON `rent-list`.`ID_Customer` = customer.ID_Customer 
+            INNER JOIN 
+            class ON `rent-list`.`ID_Class` = class.ID_Class
+            INNER JOIN 
+            tariff ON `rent-list`.`ID_Tariff` = tariff.ID_Tariff
+            WHERE
+            `rent-list`.`ID_Customer` = '$id'");
+
+    $statement  = $conn->prepare($sql);
+    $statement  ->execute();
+    $data       = $statement->get_result();
+    $result     = $data->fetch_all();
+
+    return $result;
+}
+
 function getRoleFromId($id)
 {
 
@@ -127,6 +150,34 @@ function getClassIdFromName($conn, $className)
     return $id;
 }
 
+function getClassFromName($conn, $name)
+{
+    $query = $conn->query("SELECT * FROM class WHERE name = '$name'");
+    if ($query->num_rows <= 0) {
+        return null;
+    }
+    return $query->fetch_assoc();
+}
+
+function getTarifFromName($conn, $name)
+{
+    $query = $conn->query("SELECT * FROM tariff WHERE name = '$name'");
+    if ($query->num_rows <= 0) {
+        return null;
+    }
+    return $query->fetch_assoc();
+}
+function getVehicleFromClassID($conn, $id)
+{
+    $query = $conn->query("SELECT * FROM vehicle WHERE ID_Class = '$id'");
+    if ($query->num_rows <= 0) {
+        return null;
+    }
+    $array = $query->fetch_all();
+    shuffle($array);
+    return $array[0];
+}
+
 // Check perms
 
 function isAdmin($conn, $userId)
@@ -152,6 +203,48 @@ function canDeleteRent($conn, $rent_id, $id_customer)
     $clubIdFromDatabase = $query->fetch_assoc()['ID_Customer'];
 
     return $clubIdFromDatabase == $id_customer;
+}
+
+// Calendar / Rents
+
+function createRent($conn, $start, $end, $price, $customerId, $tarifId, $classId, $chassisNumber){
+
+    $sql = "INSERT INTO `rent-list` (start, end, price, ID_Customer, ID_Tariff, ID_Class, chassis_number) VALUES (?, ?, ?, ?, ?, ?, ?);";
+    $stmt = mysqli_stmt_init($conn);
+    if (!mysqli_stmt_prepare($stmt, $sql)) {
+        header("location: dash.user.php?error=INSERTFAILED");
+        exit();
+    }
+
+    mysqli_stmt_bind_param($stmt, "ssiiiii", $start, $end, $price, $customerId, $tarifId, $classId, $chassisNumber);
+    mysqli_stmt_execute($stmt);
+    mysqli_stmt_close($stmt);
+}
+
+function getTarif($conn, $id)
+{
+    $query = $conn->query("SELECT * FROM tariff WHERE ID_Tariff = '$id'");
+    if ($query->num_rows <= 0) {
+        return null;
+    }
+    return $query->fetch_assoc();
+}
+
+function getClass($conn, $id)
+{
+    $query = $conn->query("SELECT * FROM class WHERE ID_Class = '$id'");
+    if ($query->num_rows <= 0) {
+        return null;
+    }
+    return $query->fetch_assoc();
+}
+function getVehicle($conn, $id)
+{
+    $query = $conn->query("SELECT * FROM vehicle WHERE chassis_number = '$id'");
+    if ($query->num_rows <= 0) {
+        return null;
+    }
+    return $query->fetch_assoc();
 }
 
 // Login / Register
@@ -280,7 +373,7 @@ function loginUser($conn, $email, $pwd)
 
 // Updates (Admin)
 
-function UpdateEmail($conn, $email, $id)
+function UpdateEmailAdmin($conn, $email, $id)
 {
     $sql = "UPDATE customer SET email = ? WHERE ID_Customer = $id";
     $stmt= mysqli_stmt_init($conn);
@@ -298,7 +391,7 @@ function UpdateEmail($conn, $email, $id)
     exit();
 }
 
-function UpdateTown($conn, $town, $id)
+function UpdateTownAdmin($conn, $town, $id)
 {
     $sql = "UPDATE customer SET ZIP = ? WHERE ID_Customer = $id";
     $stmt= mysqli_stmt_init($conn);
@@ -316,7 +409,7 @@ function UpdateTown($conn, $town, $id)
     exit();
 }
 
-function UpdateStreet($conn, $street, $id)
+function UpdateStreetAdmin($conn, $street, $id)
 {
     $sql = "UPDATE customer SET street = ? WHERE ID_Customer = $id";
     $stmt= mysqli_stmt_init($conn);
@@ -334,7 +427,7 @@ function UpdateStreet($conn, $street, $id)
     exit();
 }
 
-function UpdatePhone($conn, $phone, $id)
+function UpdatePhoneAdmin($conn, $phone, $id)
 {
     $sql = "UPDATE customer SET telephone = ? WHERE ID_Customer = $id";
     $stmt= mysqli_stmt_init($conn);
@@ -352,7 +445,7 @@ function UpdatePhone($conn, $phone, $id)
     exit();
 }
 
-function UpdateFirstname($conn, $firstname, $id)
+function UpdateFirstnameAdmin($conn, $firstname, $id)
 {
     $sql = "UPDATE customer SET firstname = ? WHERE ID_Customer = $id";
     $stmt= mysqli_stmt_init($conn);
@@ -370,7 +463,7 @@ function UpdateFirstname($conn, $firstname, $id)
     exit();
 }
 
-function UpdateLastname($conn, $lastname, $id)
+function UpdateLastnameAdmin($conn, $lastname, $id)
 {
     $sql = "UPDATE customer SET lastname = ? WHERE ID_Customer = $id";
     $stmt= mysqli_stmt_init($conn);
@@ -388,7 +481,7 @@ function UpdateLastname($conn, $lastname, $id)
     exit();
 }
 
-function UpdatePassword($conn, $password, $id)
+function UpdatePasswordAdmin($conn, $password, $id)
 {
     $sql = "UPDATE customer SET password = ? WHERE ID_Customer = $id";
     $stmt= mysqli_stmt_init($conn);
