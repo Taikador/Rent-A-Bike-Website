@@ -1,0 +1,525 @@
+:root {
+    --darkgray: #212329;
+    --blurple: #3059ff;
+    --white: #fff;
+    --darkwhite: #f5f5f5;
+    --lightblue: #337af1;
+    --lightgray: #b1b1b1;
+
+    --errorColor: #f00e0e;
+    --validColor: #0add0a;
+
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Nunito', sans-serif;
+}
+
+body {
+    overflow-x: hidden;
+}
+
+/* Navigation */
+
+.container {
+    position: relative;
+    width: 100%;
+}
+
+.navigation {
+    position: fixed;
+    width: 300px;
+    height: 100%;
+    background: var(--darkgray);
+    transition: 0.5s;
+    overflow: hidden;
+}
+
+.navigation.active {
+    width: 60px;
+}
+
+.navigation ul {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+}
+
+.navigation ul li {
+    position: relative;
+    width: 100%;
+    list-style: none;
+}
+
+.navigation ul li:hover {
+    background: var(--blurple);
+}
+
+.navigation ul li:nth-child(1) {
+    margin-bottom: 20px;
+}
+
+.navigation ul li:nth-child(1):hover {
+    background: transparent;
+
+}
+
+.navigation ul li a {
+    position: relative;
+    display: block;
+    width: 100%;
+    display: flex;
+    text-decoration: none;
+    color: var(--white);
+}
+
+.navigation ul li a .icon {
+    position: relative;
+    display: block;
+    min-width: 60px;
+    height: 60px;
+    line-height: 60px;
+    text-align: center;
+    top: 18px;
+}
+
+.navigation ul li a .icon .fa {
+    color: var(--white);
+    font-size: 24px;
+}
+
+.navigation ul li a .title {
+    position: relative;
+    display: block;
+    padding: 0 10px;
+    height: 60px;
+    line-height: 60px;
+    white-space: nowrap;
+}
+
+/* Dashboard */
+
+.primary {
+    position: absolute;
+    width: calc(100% - 300px);
+    left: 300px;
+    min-height: 100vh;
+    background: var(--darkwhite);
+    transition: 0.5s;
+}
+
+.primary.active {
+    width: calc(100% - 60px);
+    left: 60px;
+}
+
+.primary .topbar {
+    width: 100%;
+    background: var(--darkgray);
+    height: 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.toggle {
+    position: relative;
+    width: 60px;
+    height: 60px;
+    cursor: pointer;
+}
+
+.toggle::before {
+    content: '\f0c9';
+    font-family: fontAwesome;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    line-height: 60px;
+    font-size: 24px;
+    text-align: center;
+    color: var(--white);
+}
+
+/* Info Karten */
+
+.cardBoxUser {
+    position: relative;
+    width: 100%;
+    padding: 20px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 20px;
+}
+
+.cardBoxUser .card {
+    position: relative;
+    background: var(--white);
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    cursor: pointer;
+}
+
+.cardBoxUser .card .numbers {
+    position: relative;
+    font-size: 2rem;
+    font-weight: 500;
+}
+
+.cardBoxUser .card .cardName {
+    color: var(--lightgray);
+}
+
+.cardBoxUser .card .iconBox {
+    font-size: 2.5em;
+    color: var(--blurple);
+}
+
+.cardBoxUser .card .iconBox .fas {
+    margin-top: 10px;
+}
+
+/* Tabellen */
+
+.detailsUser {
+    position: relative;
+    width: 100%;
+    padding: 20px;
+    display: grid;
+    grid-gap: 20px;
+}
+
+/* Recent Orders */
+
+.detailsUser .recentOrders {
+    position: relative;
+    display: grid;
+    min-height: 530px;
+    background: var(--white);
+    padding: 20px;
+}
+
+.cardHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.cardHeader h2 {
+    font-weight: 600;
+}
+
+.btn {
+    position: relative;
+    padding: 5px 10px;
+    background: var(--blurple);
+    color: var(--white);
+    text-decoration: none;
+    border-radius: 6px;
+}
+
+.qtable {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: -200px;
+}
+
+.qtable thead td {
+    font-weight: 600;
+}
+
+#booking-table tr {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+#booking-table tbody tr:last-child {
+    border-bottom: none;
+}
+
+#booking-table tbody tr:hover {
+    background: var(--blurple);
+    color: var(--white);
+}
+
+#booking-table tr td {
+    padding: 9px 5px;
+}
+
+#booking-table tbody tr td:last-child,
+#booking-table thead tr td:last-child {
+    text-align: right;
+}
+
+#booking-table tbody tr td:nth-child(2),
+#booking-table thead tr td:nth-child(2) {
+    text-align: right;
+    padding-right: 20px;
+}
+
+#booking-table tbody tr td:nth-child(3),
+#booking-table thead tr td:nth-child(3) {
+    text-align: center;
+}
+
+/* Customer Section */
+
+.detailsCust {
+    position: relative;
+    width: 100%;
+    padding: 20px;
+    display: grid;
+    grid-gap: 20px;;
+}
+
+.detailsCust .AllCustomers {
+    position: relative;
+    display: grid;
+    min-height: 530px;
+    background: var(--white);
+    padding: 20px;
+}
+
+#allcustomer-table tr {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+#allcustomer-table tbody tr:last-child {
+    border-bottom: none;
+}
+
+#allcustomer-table tbody tr:hover {
+    background: var(--blurple);
+    color: var(--white);
+}
+
+#allcustomer-table tr td {
+    padding: 9px 5px;
+}
+
+#allcustomer-table tbody tr td:last-child {
+    text-align: right;
+}
+
+#allcustomer-table .fas {
+    color: var(--lightgray);
+}
+
+/* Repair Section */
+
+#allrepairs-table tr {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+#allrepairs-table tbody tr:last-child {
+    border-bottom: none;
+}
+
+#allrepairs-table tbody tr:hover {
+    background: var(--blurple);
+    color: var(--white);
+}
+
+#allrepairs-table tr td {
+    padding: 9px 5px;
+}
+
+#allrepairs-table tbody tr td:nth-child(2),
+#allrepairs-table thead tr td:nth-child(2) {
+    text-align: center;
+}
+
+/* Vehicle Section */
+
+.AllVeh {
+    position: relative;
+    display: grid;
+    min-height: 530px;
+    background: var(--white);
+    padding: 20px;
+}
+
+#allveh-table tr {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+#allveh-table tbody tr:last-child {
+    border-bottom: none;
+}
+
+#allveh-table tbody tr:hover {
+    background: var(--blurple);
+    color: var(--white);
+}
+
+#allveh-table tr td {
+    padding: 9px 5px;
+}
+
+#allveh-table tbody tr td:last-child,
+#allveh-table thead tr td:last-child {
+    text-align: right;
+}
+
+/* Rent input */
+
+.inputBox {
+    position: relative;
+    margin: 0 0 35px 0;
+}
+
+.inputBox.w50 {
+    width: 47%;
+}
+
+.inputBox.w100 {
+    width: 100%;
+}
+
+.inputBox input, .inputBox textarea {
+    width: 100% !important;
+    padding: 5px 0;
+    resize: none;
+    font-size: 18px;
+    font-weight: 300;
+    color: var(--darkgray);
+    border: none;
+    border-bottom: 1px solid #777;
+    outline: none;
+    background: none;
+}
+
+.inputBox span {
+    position: absolute;
+    left: 0;
+    padding: 5px 0;
+    font-size: 18px;
+    font-weight: 300;
+    color: rgb(114, 114, 114);
+    transition: 0.3s;
+    pointer-events: none;
+}
+
+.inputBox input:focus ~ span,
+.inputBox input:valid ~ span,
+.inputBox textarea:focus ~ span,
+.inputBox textarea:valid ~ span {
+    transform: translateY(-20px);
+    font-size: 15px;
+    font-weight: 400;
+    letter-spacing: 1px;
+    background: #8E2DE2;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #4A00E0, #8E2DE2);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #4A00E0, #8E2DE2); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    -webkit-background-clip: text;
+    -moz-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    -moz-text-fill-color: transparent;
+}
+
+.inputBox input[type="submit"] {
+    margin-top: 20px;
+    position: relative;
+    cursor: pointer;
+    border: none;
+    max-width: 150px;
+    padding: 12px;
+    background: var(--blurple);
+    color: var(--white);
+    transition: 0.3s;
+}
+
+.inputBox input[type="submit"]:hover {
+    background: var(--lightblue);
+}
+
+.btn {
+    width: auto;
+}
+
+/* Daten Karten */
+
+.DatacardBox {
+    position: relative;
+    width: 100%;
+    padding: 20px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 20px;
+}
+
+.DatacardBox .Datacard {
+    position: relative;
+    background: var(--white);
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    cursor: pointer;
+}
+
+.DatacardBox .Datacard .DataDesc {
+    color: var(--lightgray);
+}
+
+.DatacardBox .Datacard .DataName {
+    position: relative;
+    font-size: 2rem;
+    font-weight: 500;
+}
+
+.DatacardBox .Datacard .iconBox {
+    font-size: 2.5em;
+    color: var(--blurple);
+}
+
+.DatacardBox .Datacard .iconBox .fas {
+    margin-top: 30px;
+}
+
+/* Change form */
+
+.changeBox {
+    position: relative;
+    margin: 0 0 35px 0;
+}
+
+.changeBox.w50 {
+    width: 90%;
+}
+
+.changeBox input {
+    width: 100% !important;
+    padding: 5px 0;
+    resize: none;
+    font-size: 18px;
+    font-weight: 300;
+    color: var(--darkgray);
+    border: none;
+    border-bottom: 1px solid #777;
+    outline: none;
+    background: none;
+}
+
+.changeBox input[type="submit"] {
+    margin-top: 4px;
+    position: relative;
+    cursor: pointer;
+    border: none;
+    max-width: 120px;
+    padding: 7px;
+    background: var(--blurple);
+    color: var(--white);
+    transition: 0.3s;
+}
+
+.changeBox input[type="submit"]:hover {
+    background: var(--lightblue);
+}
+
+.swal2-content {
+  z-index: 2 !important;
+}
