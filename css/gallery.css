@@ -1,3 +1,9 @@
+@import url('style.css');
+
+* {
+    font-family: 'Nunito', sans-serif;
+}
+
 .tarife-section {
     background-color: var(--darkgray);
     width: 100vw;
