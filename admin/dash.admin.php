@@ -21,6 +21,9 @@ if (isset($_SESSION)) {
     <script src="https://kit.fontawesome.com/2deba413ff.js" crossorigin="anonymous"></script>
     <link rel="icon" type="image/svg+xml" href="../img/admin-dash.svg">
     <link rel="stylesheet" href="../css/admin.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito&display=swap" rel="stylesheet">
     <title>Admin Dashboard</title>
 </head>
 <body>
@@ -78,7 +81,7 @@ if (isset($_SESSION)) {
             </ul>
         </div>
 
-        <div class="main">
+        <div class="first_prime">
             <div class="topbar">
                 <div class="toggle" onclick="toggleMenu();"></div>
             </div>

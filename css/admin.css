@@ -1,3 +1,5 @@
+@import url('style.css');
+
 :root {
     --darkgray: #212329;
     --blurple: #3059ff;
@@ -8,12 +10,14 @@
 
     --errorColor: #f00e0e;
     --validColor: #0add0a;
+
 }
 
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: 'Nunito', sans-serif;
 }
 
 body {
@@ -101,7 +105,7 @@ body {
 
 /* Dashboard */
 
-.main {
+.first_prime {
     position: absolute;
     width: calc(100% - 300px);
     left: 300px;
@@ -110,12 +114,12 @@ body {
     transition: 0.5s;
 }
 
-.main.active {
+.first_prime.active {
     width: calc(100% - 60px);
     left: 60px;
 }
 
-.main .topbar {
+.first_prime .topbar {
     width: 100%;
     background: var(--darkgray);
     height: 60px;

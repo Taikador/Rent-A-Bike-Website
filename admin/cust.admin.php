@@ -78,7 +78,7 @@ if (isset($_SESSION)) {
             </ul>
         </div>
 
-        <div class="main">
+        <div class="first_prime">
             <div class="topbar">
                 <div class="toggle" onclick="toggleMenu();"></div>
             </div>
@@ -136,6 +136,7 @@ if (isset($_SESSION)) {
 
                     ?>
                 </div>
+            </div>
         </div>
     </div>
 
