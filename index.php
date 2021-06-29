@@ -8,9 +8,16 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/style.css">
     <link rel="icon" type="image/svg+xml" href="img/tab-icon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito&display=swap" rel="stylesheet">
     <audio src="audio/hover.mp3" id="audio"></audio>
+    <script
+    src="https://code.jquery.com/jquery-3.6.0.js"
+    integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+    crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="css/style.css">
     <title>Rent-A-Bike Parzentny</title>
 </head>
 <body>
@@ -26,9 +33,9 @@
                 <span class="bar"></span>
             </div>
             <ul class="nav__menu">
-                <li><a href="#" class="nav__links">Home</a></li>
-                <li><a href="#" class="nav__links">Fuhrpark</a></li>
-                <li><a href="#" class="nav__links">Tarife</a></li>
+                <li><a href="#home" class="nav__links">Home</a></li>
+                <li><a href="#fuhrpark" class="nav__links">Fuhrpark</a></li>
+                <li><a href="#tarife" class="nav__links">Tarife</a></li>
                 <?php
                     if (isset($_SESSION['role'])) {
                         if (strcasecmp($_SESSION['role'], "user") == 0) {
@@ -48,7 +55,7 @@
 
     <!-- HERO SECTION -->
 
-    <div class="main">
+    <div class="main" id="home">
         <div class="main__container">
             <div class="main__content">
                 <h1>Die nächste <span>Generation</span> der E-Bike Vermietung</h1>
@@ -159,7 +166,7 @@
 
     <!-- Vehicles -->
     
-    <div class="vehicle-section">
+    <div class="vehicle-section" id="fuhrpark">
         <div class="vehicle-heading">
             <h1>Unser Fuhrpark</h1>
         </div>
@@ -182,7 +189,7 @@
 
     <!-- Tariff's -->
 
-    <div class="tarife-section">
+    <div class="tarife-section" id="tarife">
         <div class="tarife-heading">
             <h1>Unsere Tarife</h1>
         </div>
@@ -244,11 +251,7 @@
         </div>
     </div>
 
-
-    <script
-    src="https://code.jquery.com/jquery-3.6.0.js"
-    integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
-    crossorigin="anonymous"></script>
     <script src="javascript/app.js"></script>
+
 </body>
 </html>
