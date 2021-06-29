@@ -500,3 +500,133 @@ function UpdatePasswordAdmin($conn, $password, $id)
     header("location: ../../admin/sett.admin.php?error=none");
     exit();
 }
+
+// Updates (User)
+
+function UpdateEmailUser($conn, $email, $id)
+{
+    $sql = "UPDATE customer SET email = ? WHERE ID_Customer = $id";
+    $stmt= mysqli_stmt_init($conn);
+
+    if (!mysqli_stmt_prepare($stmt, $sql)) {
+        header("location: ../../user/sett.user.php?error=INSERTFAILED");
+        exit();
+    }
+
+    mysqli_stmt_bind_param($stmt, "s", $email);
+    mysqli_stmt_execute($stmt);
+    mysqli_stmt_close($stmt);
+
+    header("location: ../../user/sett.user.php?error=none");
+    exit();
+}
+
+function UpdateTownUser($conn, $town, $id)
+{
+    $sql = "UPDATE customer SET ZIP = ? WHERE ID_Customer = $id";
+    $stmt= mysqli_stmt_init($conn);
+
+    if (!mysqli_stmt_prepare($stmt, $sql)) {
+        header("location: ../../user/sett.user.php?error=INSERTFAILED");
+        exit();
+    }
+
+    mysqli_stmt_bind_param($stmt, "s", $town);
+    mysqli_stmt_execute($stmt);
+    mysqli_stmt_close($stmt);
+
+    header("location: ../../user/sett.user.php?error=none");
+    exit();
+}
+
+function UpdateStreetUser($conn, $street, $id)
+{
+    $sql = "UPDATE customer SET street = ? WHERE ID_Customer = $id";
+    $stmt= mysqli_stmt_init($conn);
+
+    if (!mysqli_stmt_prepare($stmt, $sql)) {
+        header("location: ../../user/sett.user.php?error=INSERTFAILED");
+        exit();
+    }
+
+    mysqli_stmt_bind_param($stmt, "s", $street);
+    mysqli_stmt_execute($stmt);
+    mysqli_stmt_close($stmt);
+
+    header("location: ../../user/sett.user.php?error=none");
+    exit();
+}
+
+function UpdatePhoneUser($conn, $phone, $id)
+{
+    $sql = "UPDATE customer SET telephone = ? WHERE ID_Customer = $id";
+    $stmt= mysqli_stmt_init($conn);
+
+    if (!mysqli_stmt_prepare($stmt, $sql)) {
+        header("location: ../../user/sett.user.php?error=INSERTFAILED");
+        exit();
+    }
+
+    mysqli_stmt_bind_param($stmt, "s", $phone);
+    mysqli_stmt_execute($stmt);
+    mysqli_stmt_close($stmt);
+
+    header("location: ../../user/sett.user.php?error=none");
+    exit();
+}
+
+function UpdateFirstnameUser($conn, $firstname, $id)
+{
+    $sql = "UPDATE customer SET firstname = ? WHERE ID_Customer = $id";
+    $stmt= mysqli_stmt_init($conn);
+
+    if (!mysqli_stmt_prepare($stmt, $sql)) {
+        header("location: ../../user/sett.user.php?error=INSERTFAILED");
+        exit();
+    }
+
+    mysqli_stmt_bind_param($stmt, "s", $firstname);
+    mysqli_stmt_execute($stmt);
+    mysqli_stmt_close($stmt);
+
+    header("location: ../../user/sett.user.php?error=none");
+    exit();
+}
+
+function UpdateLastnameUser($conn, $lastname, $id)
+{
+    $sql = "UPDATE customer SET lastname = ? WHERE ID_Customer = $id";
+    $stmt= mysqli_stmt_init($conn);
+
+    if (!mysqli_stmt_prepare($stmt, $sql)) {
+        header("location: ../../user/sett.user.php?error=INSERTFAILED");
+        exit();
+    }
+
+    mysqli_stmt_bind_param($stmt, "s", $lastname);
+    mysqli_stmt_execute($stmt);
+    mysqli_stmt_close($stmt);
+
+    header("location: ../../user/sett.user.php?error=none");
+    exit();
+}
+
+function UpdatePasswordUser($conn, $password, $id)
+{
+    $sql = "UPDATE customer SET password = ? WHERE ID_Customer = $id";
+    $stmt= mysqli_stmt_init($conn);
+
+    if (!mysqli_stmt_prepare($stmt, $sql)) {
+        header("location: ../../user/sett.user.php?error=INSERTFAILED");
+        exit();
+    }
+
+    $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+
+    mysqli_stmt_bind_param($stmt, "s", $hashedPassword);
+    mysqli_stmt_execute($stmt);
+    mysqli_stmt_close($stmt);
+
+    header("location: ../../user/sett.user.php?error=none");
+    exit();
+}
