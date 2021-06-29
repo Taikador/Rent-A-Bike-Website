@@ -1,0 +1,95 @@
+@import url('style.css');
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: "Ubuntu", sans-serif;
+    height: 100vh;
+    box-sizing: border-box;
+    list-style: none;
+    background: #2a2a29;
+    overflow: hidden;
+}
+
+p {
+    max-width: 80%;
+    margin: auto;
+    padding: 40px 0;
+    font-size: 18px;
+    line-height: 1.4em;
+    text-align: justify;
+}
+
+.privacy__body {
+    background: -webkit-linear-gradient(300deg, #5775cf, #5775cf);
+    overflow: visible;
+}
+
+.privacy__title__container {
+    margin: 0px 0px 0px 0px;
+    padding: 0px 0px 35px 0px;
+    text-align: center;
+    width: 100%;
+}
+
+.privay__title h1 {
+    color: #202020;
+    font-family: "Lora", sans-serif;
+    font-size: 45px;
+    font-weight: 500;
+    line-height: 1.1em;
+}
+
+.impressum__content__container h2 {
+    text-align: center;
+    font-size: 35px;
+}
+
+.impressum__content__container h3 {
+    margin-left: 20%;
+    margin-bottom: 0;
+    font-size: 25px;
+}
+
+.impressum__content__container p {
+    max-width: 60%;
+    margin-bottom: 0;
+    font-size: 18px;
+}
+
+.impressum__content__container .small_margin_bottom,
+.impressum__content__container #small_margin_bottom {
+    margin-bottom: -4%;
+}
+
+.impressum__content__container .high_margin_top {
+    margin-top: 2%;
+}
+
+.privacy__content__container .small_margin_top {
+    margin-top: -2%;
+}
+
+.privacy__content__container h2 {
+    margin-left: 20%;
+    font-size: 35px;
+}
+
+.privacy__content__container h3 {
+    margin-left: 20%;
+    margin-bottom: 0;
+    font-size: 25px;
+}
+
+.privacy__content__container h4 {
+    margin-left: 20%;
+    color: #181717;
+    font-size: 22px;
+    margin-bottom: 0;
+}
+
+.privacy__content__container p {
+    max-width: 60%;
+    margin-bottom: 0;
+    font-size: 18px;
+}

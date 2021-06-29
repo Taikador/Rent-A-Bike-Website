@@ -232,8 +232,8 @@
         <div class="footer">
             <div class="footer-heading footer-1">
                 <h2>Über Uns</h2>
-                <a href="#">Impressum</a>
-                <a href="#">Datenschutz</a>
+                <a href="html/impressum.html">Impressum</a>
+                <a href="html/privacy.html">Datenschutz</a>
             </div>
             <div class="footer-heading footer-2">
                 <h2>Kontakt</h2>
