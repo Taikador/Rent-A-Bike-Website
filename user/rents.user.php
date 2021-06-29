@@ -17,7 +17,7 @@ if (isset($_SESSION)) {
         function toggleMenu() {
             let toggle      = document.querySelector('.toggle');
             let navigation  = document.querySelector('.navigation');
-            let main        = document.querySelector('.main');
+            let main        = document.querySelector('.primary');
             toggle.classList.toggle('active');
             navigation.classList.toggle('active');
             main.classList.toggle('active');
@@ -75,7 +75,7 @@ if (isset($_SESSION)) {
             Swal.fire({
               position: 'center',
               titleText: 'Informationen:',
-              html: "Ausleihe ID: " + event.id + "<br> Start: " + start + "<br> Ende: " + end + "<br> Preis: "+event.price + "<br> Ihre Kunden ID: " + event.kunde_id + "<br> Tarif: " + event.tarif + "<br> Art des Fahrzeugs: " + event.klasse,
+              html: "Ausleihe ID: " + event.id + "<br> Start: " + start + "<br> Ende: " + end + "<br> Preis: "+event.price + "€<br> Abzuholen in: " + event.station + "<br> Tarif: " + event.tarif + "<br> Art des Fahrzeugs: " + event.klasse,
               showConfirmButton: true,
             })
           })
@@ -96,7 +96,7 @@ if (isset($_SESSION)) {
                     </a>
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="dash.user.php">
                         <span class="icon"><i class="fa fa-home" aria-hidden="true"></i></span>
                         <span class="title">Dashboard</span>
                     </a>
